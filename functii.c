@@ -1,8 +1,6 @@
 #include "functii.h"
 #include <string.h>
 
-//git
-
 Tree IniT()
 {
 	Tree arb = (Tree)malloc(sizeof(Node));
