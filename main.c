@@ -69,7 +69,7 @@ int main (int argc, char *argv[]) {
 		printf("%d\n", BFS_maxcopii(arb));
 		fclose(fin);
 		fclose(stdout);
-	}else if (!strcmp("-c3", argv[1])) {
+	} else if (!strcmp("-c3", argv[1])) {
 		if (argc > 4) {
 			printf("Folosire: -c1 [fisier_intrare] [fisier_iesire]");
 			return 1;
@@ -97,6 +97,29 @@ int main (int argc, char *argv[]) {
 			printRootToLeafPathsHelper(arb, s, a, 0, &g);
 			printf("%d\n", g);
 		}
+		fclose(fin);
+		fclose(stdout);
+	} else if (!strcmp("-c4", argv[1])) {
+		if (argc > 4) {
+			printf("Folosire: -c4 [fisier_intrare] [fisier_iesire]");
+			return 1;
+		}
+		FILE *fin = fopen(argv[2], "r");
+		if (!fin) {
+			return 1;
+		}
+		freopen(argv[3], "w", stdout);
+		int n = 0;
+		fscanf(fin, "%d", &n);
+		CompTree arb = InitCT();
+		for(int i = 0; i < n; i++) {
+			char s[101];
+			fscanf(fin, "%s", s);
+			strcat(s, "$");
+			ArbSufComp(arb, s);
+		}
+		Compactizare(arb);
+		BFSComp(arb);
 		fclose(fin);
 		fclose(stdout);
 	}
