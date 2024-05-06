@@ -94,8 +94,7 @@ int main (int argc, char *argv[]) {
 			char a[101];
 			strcpy(a, "");
 			int g = 0;
-			DFSsuf(arb, s, a, &g);
-			strcpy(a, "");
+			printRootToLeafPathsHelper(arb, s, a, 0, &g);
 			printf("%d\n", g);
 		}
 		fclose(fin);

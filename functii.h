@@ -14,4 +14,4 @@ void BFS(Tree arb);
 int BFS_maxcopii(Tree arb);
 int BFS_nrfrunze(Tree arb);
 void DFSHelper(Tree node, int K, int cnt, int *CNT);
-void DFSsuf(Tree node, char *s, char *a, int *g);
+void printRootToLeafPathsHelper(Tree node, char *a, char *path, int pathLen, int *g);

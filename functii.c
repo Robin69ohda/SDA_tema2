@@ -152,34 +152,46 @@ void DFSHelper(Tree node, int K, int cnt, int *CNT) {
     }
 }
 
-void DFSsuf(Tree node, char *s, char *a, int *g) {
-    if (node == NULL) {
-		return;
-	}
-	
-	//printf("%c ", node->info);
-	strcat(a, &node->info);
-	
-	if (node->info == '$') {
-		printf("%s\n", a);
-		a[strlen(a) - 1] = '\0';
-		
-		if (!strcmp(a, s)) {
-			(*g) = 1;
-		}
-		int nrcopii = 0;
-		for (int i = 1; i < 27; i++) {
-			if (node->parinte->children[i]) {
-				nrcopii++;
-			}
-		}
-		if (!nrcopii)
-			strcpy(a, "");
+void printArray(char *path, int length) {
+    for (int i = 0; i < length; i++) {
+        printf("%c", path[i]);
+    }
+    printf("\n");
+}
+
+int compArray(char *path, int length, char *a) {
+	int ok = 1;
+    for (int i = 0; i < length; i++) {
+        if (path[i] != a[i])
+			ok = 0;
+    }
+    return ok;
+}
+
+void printRootToLeafPathsHelper(Tree node, char *a, char *path, int pathLen, int *g) {
+    if (node == NULL)
+        return;
+
+    // Add current node's value to path
+	if (node->info) {
+    	path[pathLen] = node->info;
+    	pathLen++;
 	}
 
-    for (int i = 0; i < 27; i++) {
-        if (node->children[i]) {
-            DFSsuf(node->children[i], s, a, g);
+    // If current node is a leaf, print the path
+    if (node->info == '$') {
+		path[pathLen - 1] = '\0';
+		pathLen--;
+        if (pathLen == strlen(a)) {
+			if (compArray(path, pathLen, a))
+				(*g) = 1;
+		}
+    } else {
+        // Recursive call for children nodes
+        for (int i = 0; i < 27; i++) {
+            if (node->children[i] != NULL) {
+                printRootToLeafPathsHelper(node->children[i], a, path, pathLen, g);
+            }
         }
     }
 }

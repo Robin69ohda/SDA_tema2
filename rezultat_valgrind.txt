@@ -1,0 +1,6 @@
+==27876== 51,736 (1,856 direct, 49,880 indirect) bytes in 8 blocks are definitely lost in loss record 4 of 4
+==27876==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27876==    by 0x1099F2: IniT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==27876==    by 0x109AC5: ArbSuf (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==27876==    by 0x1098ED: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==27876== 
