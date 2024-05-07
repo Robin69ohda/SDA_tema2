@@ -3,12 +3,16 @@
 #include <stdlib.h>
 #include "functii.h"
 
-int main (int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
+	// Verificăm dacă numărul de argumente este suficient pentru a rula programul
 	if (argc < 4) {
-        printf("Folosire: ./tema2 [-c1 | -c2 <K> | -c3 | -c4] [fisier_intrare] [fisier_iesire]");
-        return 1; // Încheie programul cu cod de eroare
-    }
+		printf("Folosire: ./tema2 [-c1 | -c2 <K> | -c3 | -c4] [fisier_intrare] [fisier_iesire]");
+		return 1;
+	}
+
+	// Verificăm opțiunile și argumentele și apelăm funcțiile corespunzătoare în funcție de acestea
 	if (!strcmp("-c1", argv[1])) {
+		// Opțiunea -c1: Construiește arborele de sufixe și afișează nivelurile utilizând BFS
 		if (argc > 4) {
 			printf("Folosire: -c1 [fisier_intrare] [fisier_iesire]");
 			return 1;
@@ -21,7 +25,7 @@ int main (int argc, char *argv[]) {
 		int n = 0;
 		fscanf(fin, "%d", &n);
 		Tree arb = IniT();
-		for(int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			strcat(s, "$");
@@ -31,6 +35,7 @@ int main (int argc, char *argv[]) {
 		fclose(fin);
 		fclose(stdout);
 	} else if (!strcmp("-c2", argv[1])) {
+		// Opțiunea -c2: Construiește arborele de sufixe și rezolvă cerințele specifice
 		if (argc > 5) {
 			printf("Folosire: -c2 <K> [fisier_intrare] [fisier_iesire]");
 			return 1;
@@ -43,7 +48,7 @@ int main (int argc, char *argv[]) {
 		int n = 0;
 		fscanf(fin, "%d", &n);
 		Tree arb = IniT();
-		for(int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			strcat(s, "$");
@@ -70,6 +75,7 @@ int main (int argc, char *argv[]) {
 		fclose(fin);
 		fclose(stdout);
 	} else if (!strcmp("-c3", argv[1])) {
+		// Opțiunea -c3: Construiește arborele de sufixe și rezolvă cerințele specifice
 		if (argc > 4) {
 			printf("Folosire: -c1 [fisier_intrare] [fisier_iesire]");
 			return 1;
@@ -82,13 +88,13 @@ int main (int argc, char *argv[]) {
 		int n = 0, m = 0;
 		fscanf(fin, "%d%d", &n, &m);
 		Tree arb = IniT();
-		for(int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			strcat(s, "$");
 			ArbSuf(arb, s);
 		}
-		for(int i = 0; i < m; i++) {
+		for (int i = 0; i < m; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			char a[101];
@@ -100,6 +106,7 @@ int main (int argc, char *argv[]) {
 		fclose(fin);
 		fclose(stdout);
 	} else if (!strcmp("-c4", argv[1])) {
+		// Opțiunea -c4: Construiește arborele de sufixe comprimat și afișează nivelurile utilizând BFS
 		if (argc > 4) {
 			printf("Folosire: -c4 [fisier_intrare] [fisier_iesire]");
 			return 1;
@@ -112,7 +119,7 @@ int main (int argc, char *argv[]) {
 		int n = 0;
 		fscanf(fin, "%d", &n);
 		CompTree arb = InitCT();
-		for(int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			strcat(s, "$");

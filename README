@@ -1,0 +1,36 @@
+Arbore de Sufixe
+Acest program implementează construirea și manipularea unui arbore de sufixe pentru un set de cuvinte dat.
+
+Cerințe
+Compiler C (gcc de preferat)
+Sistem de operare compatibil (Windows/Linux/Unix)
+
+Utilizare
+Pentru a compila programul, utilizați comanda:
+gcc -o tema2 main.c functii.c
+Pentru a rula programul, utilizați comanda:
+./tema2 [-c1 | -c2 <K> | -c3 | -c4] [fisier_intrare] [fisier_iesire]
+
+Argumentele disponibile sunt:
+
+-c1: Construiește arborele de sufixe și afișează nivelurile utilizând BFS.
+-c2 <K>: Construiește arborele de sufixe și rezolvă cerințele specifice.
+-c3: Construiește arborele de sufixe și rezolvă cerințele specifice.
+-c4: Construiește arborele de sufixe comprimat și afișează nivelurile utilizând BFS.
+[fisier_intrare]: Numele fișierului de intrare care conține datele de procesat.
+
+[fisier_iesire]: Numele fișierului de ieșire unde vor fi scrise rezultatele.
+
+Structura fișierului de intrare
+Pentru -c1, -c2, -c3: Prima linie conține un număr întreg n care reprezintă numărul de cuvinte de procesat. Urmează n linii, fiecare conținând un cuvânt.
+Pentru -c4: Prima linie conține un număr întreg n care reprezintă numărul de cuvinte de procesat. Urmează n linii, fiecare conținând un cuvânt.
+
+Structura fișierului de ieșire
+Pentru -c1: Nivelurile arborelui de sufixe, separate de linii noi.
+Pentru -c2: Numărul de frunze ale arborelui, numărul de drumuri cu lungimea K și numărul maxim de copii ai unui nod.
+Pentru -c3: Pentru fiecare cuvânt de căutat, 1 dacă există un drum de la rădăcină la o frunză care corespunde cuvântului, 0 în caz contrar.
+Pentru -c4: Nivelurile arborelui de sufixe comprimat, separate de linii noi.
+
+Observații
+Pentru opțiunea -c2, lungimea K trebuie să fie un număr întreg.
+Lungimea maximă a unui cuvânt este 100 de caractere.

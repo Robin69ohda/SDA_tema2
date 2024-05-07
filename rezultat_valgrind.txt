@@ -1,29 +1,29 @@
-==123697== 5,550 bytes in 111 blocks are definitely lost in loss record 3 of 10
-==123697==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==123697==    by 0x109DCC: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697==    by 0x109EAF: ArbSufComp (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697==    by 0x109B52: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697== 
-==123697== 8,768 (7,168 direct, 1,600 indirect) bytes in 32 blocks are definitely lost in loss record 4 of 10
-==123697==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==123697==    by 0x109DB0: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697==    by 0x109EAF: ArbSufComp (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697==    by 0x109B52: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697== 
-==123697== 17,450 bytes in 349 blocks are definitely lost in loss record 6 of 10
-==123697==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==123697==    by 0x109DCC: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697==    by 0x109F75: ArbSufComp (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697==    by 0x109B52: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697== 
-==123697== 49,046 (224 direct, 48,822 indirect) bytes in 1 blocks are definitely lost in loss record 9 of 10
-==123697==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==123697==    by 0x109DB0: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697==    by 0x109AEC: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697== 
-==123697== 68,500 (56,000 direct, 12,500 indirect) bytes in 250 blocks are definitely lost in loss record 10 of 10
-==123697==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==123697==    by 0x109DB0: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697==    by 0x109F75: ArbSufComp (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697==    by 0x109B52: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
-==123697== 
+==1375== 5,550 bytes in 111 blocks are definitely lost in loss record 3 of 10
+==1375==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1375==    by 0x109DCC: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375==    by 0x109EAF: ArbSufComp (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375==    by 0x109B52: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375== 
+==1375== 8,768 (7,168 direct, 1,600 indirect) bytes in 32 blocks are definitely lost in loss record 4 of 10
+==1375==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1375==    by 0x109DB0: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375==    by 0x109EAF: ArbSufComp (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375==    by 0x109B52: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375== 
+==1375== 17,450 bytes in 349 blocks are definitely lost in loss record 6 of 10
+==1375==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1375==    by 0x109DCC: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375==    by 0x109F75: ArbSufComp (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375==    by 0x109B52: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375== 
+==1375== 49,046 (224 direct, 48,822 indirect) bytes in 1 blocks are definitely lost in loss record 9 of 10
+==1375==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1375==    by 0x109DB0: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375==    by 0x109AEC: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375== 
+==1375== 68,500 (56,000 direct, 12,500 indirect) bytes in 250 blocks are definitely lost in loss record 10 of 10
+==1375==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1375==    by 0x109DB0: InitCT (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375==    by 0x109F75: ArbSufComp (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375==    by 0x109B52: main (in /mnt/c/Users/robin/OneDrive/Documents/GitHub/SDA_tema2/tema2)
+==1375== 

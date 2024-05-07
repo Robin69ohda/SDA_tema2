@@ -1,6 +1,7 @@
 #include "functii.h"
 #include <string.h>
 
+// Inițializează un nod al arborelui
 Tree IniT()
 {
 	Tree arb = (Tree)malloc(sizeof(Node));
@@ -13,6 +14,7 @@ Tree IniT()
 	return arb;
 }
 
+// Construiește un arbore de sufixe
 void ArbSuf(Tree arb, char *s)
 {
 	int l = strlen(s);
@@ -20,6 +22,7 @@ void ArbSuf(Tree arb, char *s)
 		Tree aux = arb;
 		for (int j = l - i - 1; j < l; j++) {
 			int index = s[j] - 'a' + 1;
+			// Dacă întâlnim caracterul '$', creăm un nod nou și îl conectăm la arbore
 			if (s[j] == '$') {
 				aux->children[0] = IniT();
 				if (!aux->children[0])
@@ -29,6 +32,7 @@ void ArbSuf(Tree arb, char *s)
 			} else if (aux->children[index]) {
 				aux = aux->children[index];
 			} else {
+				// Dacă nu există un nod pentru caracterul curent, creăm unul și îl conectăm la arbore
 				aux->children[index] = IniT();
 				aux->children[index]->parinte = aux;
 				aux = aux->children[index];
@@ -38,22 +42,24 @@ void ArbSuf(Tree arb, char *s)
 	}
 }
 
+// Inițializează un nod al arborelui comprimat
 CompTree InitCT()
 {
 	CompTree arb = (CompTree)malloc(sizeof(CompNode));
 	if (!arb)
 		return NULL;
 	arb->info = (char*)malloc(50 * sizeof(char));
-    if (!arb->info) {
-        free(arb); // Free arb if info allocation fails
-        return NULL;
-    }
+	if (!arb->info) {
+		free(arb);
+		return NULL;
+	}
 	*arb->info = '\0';
 	for (int i = 0; i < 27; i++)
 		arb->children[i] = NULL;
 	return arb;
 }
 
+// Construiește un arbore de sufixe comprimat
 void ArbSufComp(CompTree arb, char *s)
 {
 	int l = strlen(s);
@@ -61,39 +67,42 @@ void ArbSufComp(CompTree arb, char *s)
 		CompTree aux = arb;
 		for (int j = l - i - 1; j < l; j++) {
 			int index = s[j] - 'a' + 1;
+			// Dacă întâlnim caracterul '$', creăm un nod nou și îl conectăm la arbore
 			if (s[j] == '$') {
 				aux->children[0] = InitCT();
 				if (!aux->children[0])
 					return;
 				aux->children[0]->info = (char*)malloc(50 * sizeof(char));
-                if (!aux->children[0]->info) {
+				if (!aux->children[0]->info) {
 					free(aux->children[0]);
-                    aux->children[0] = NULL;
-                    return;
+					aux->children[0] = NULL;
+					return;
 				}
-                aux->children[0]->info[0] = '$';
-                aux->children[0]->info[1] = '\0';
+				aux->children[0]->info[0] = '$';
+				aux->children[0]->info[1] = '\0';
 			} else if (index >= 0 && index < 27 && aux->children[index]) {
 				aux = aux->children[index];
 			} else {
+				// Dacă nu există un nod pentru caracterul curent, creăm unul și îl conectăm la arbore
 				aux->children[index] = InitCT();
 				aux = aux->children[index];
 				aux->info = (char*)malloc(50 * sizeof(char));
-                if (!aux->info) {
+				if (!aux->info) {
 					free(aux);
-                    aux = NULL;
-                    return;
+					aux = NULL;
+					return;
 				}
-                aux->info[0] = s[j];
-                aux->info[1] = '\0';
+				aux->info[0] = s[j];
+				aux->info[1] = '\0';
 			}
 		}
 	}
 }
 
+// Compactează un arbore de sufixe comprimat
 void Compactizare(CompTree node) {
-    if (node == NULL)
-        return;
+	if (node == NULL)
+		return;
 
 	int cnt = 0, ok = 0;
 	for (int i = 1; i < 27; i++) {
@@ -102,7 +111,6 @@ void Compactizare(CompTree node) {
 	}
 
 	if (cnt == 1 && !node->children[0]) {
-		
 		int idx = -1;
 		for (int i = 0; i < 27; i++) {
 			if (node->children[i]) {
@@ -115,6 +123,7 @@ void Compactizare(CompTree node) {
 			ok = 1;
 			int ok2 = 0;
 			CompTree aux = node->children[idx];
+			// Concatenăm informația din nodul copil la nodul curent
 			strcat(node->info, aux->info);
 			for (int j = 0; j < 27; j++) {
 				if (aux->children[j]) {
@@ -125,26 +134,29 @@ void Compactizare(CompTree node) {
 				}
 			}
 			if (!ok2) {
+				// Dacă nodul copil nu are alte ramuri, îl eliminăm și ștergem informația
 				strcpy(aux->info, "");
 				node->children[idx] = NULL;
 			} else {
 				strcpy(aux->info, "");
 			}
-			
 		}
 	}
 
+	// Continuăm compactizarea pentru toți copiii nodului curent
 	if (ok) {
 		Compactizare(node);
 	}
 
-    for (int i = 0; i < 27; i++) {
-        if (node->children[i]) {
-            Compactizare(node->children[i]);
-        }
-    }
+	// Aplicăm compactizarea pentru toți copiii nodului curent
+	for (int i = 0; i < 27; i++) {
+		if (node->children[i]) {
+			Compactizare(node->children[i]);
+		}
+	}
 }
 
+// Parcurge arborele folosind BFS pentru arborele de sufixe
 void BFS(Tree arb) {
 	if (!arb)
 		return;
@@ -157,9 +169,6 @@ void BFS(Tree arb) {
 
 	// Adăugăm rădăcina în coadă
 	queue[rear++] = arb;
-
-	// Afișăm rădăcina înainte de a începe parcurgerea
-	//printf("%c", arb->info);
 
 	// Parcurgem nodurile în coadă
 	while (front < rear) {
@@ -183,6 +192,7 @@ void BFS(Tree arb) {
 	}
 }
 
+// Parcurge arborele folosind BFS pentru arborele de sufixe comprimat
 void BFSComp(CompTree arb) {
 	if (!arb)
 		return;
@@ -195,9 +205,6 @@ void BFSComp(CompTree arb) {
 
 	// Adăugăm rădăcina în coadă
 	queue[rear++] = arb;
-
-	// Afișăm rădăcina înainte de a începe parcurgerea
-	//printf("%c", arb->info);
 
 	// Parcurgem nodurile în coadă
 	while (front < rear) {
@@ -221,17 +228,18 @@ void BFSComp(CompTree arb) {
 	}
 }
 
+// Găsește numărul maxim de copii folosind BFS pentru arborele de sufixe
 int BFS_maxcopii(Tree arb) {
 	if (!arb)
 		return 0;
-	Tree queue[1000]; // Presupunem un număr maxim de 1000 de noduri în coadă
+	Tree queue[1000];
 	int front = 0, rear = 0;
-	int nodesInCurrentLevel = 1; // Numărul de noduri în nivelul curent
-	int nodesInNextLevel = 0; // Numărul de noduri în nivelul următor
+	int nodesInCurrentLevel = 1;
+	int nodesInNextLevel = 0;
 	int max = 0;
 	queue[rear++] = arb;
 	while (front < rear) {
-		Tree currentNode = queue[front++]; // Extragem primul nod din coadă
+		Tree currentNode = queue[front++];
 		int nrfii = 0;
 		for (int i = 0; i < 27; i++) {
 			if (currentNode->children[i]) {
@@ -250,17 +258,18 @@ int BFS_maxcopii(Tree arb) {
 	return max;
 }
 
+// Numără frunzele folosind BFS pentru arborele de sufixe
 int BFS_nrfrunze(Tree arb) {
 	if (!arb)
 		return 0;
-	Tree queue[1000]; // Presupunem un număr maxim de 1000 de noduri în coadă
+	Tree queue[1000];
 	int front = 0, rear = 0;
-	int nodesInCurrentLevel = 1; // Numărul de noduri în nivelul curent
-	int nodesInNextLevel = 0; // Numărul de noduri în nivelul următor
+	int nodesInCurrentLevel = 1;
+	int nodesInNextLevel = 0;
 	int cnt = 0;
 	queue[rear++] = arb;
 	while (front < rear) {
-		Tree currentNode = queue[front++]; // Extragem primul nod din coadă
+		Tree currentNode = queue[front++];
 		if (currentNode->info == '$')
 			cnt++;
 		for (int i = 0; i < 27; i++) {
@@ -277,9 +286,10 @@ int BFS_nrfrunze(Tree arb) {
 	return cnt;
 }
 
+// Funcție helper pentru DFS
 void DFSHelper(Tree node, int K, int cnt, int *CNT) {
-    if (node == NULL)
-        return;
+	if (node == NULL)
+		return;
 
 	cnt++;
 	if (node->info == '$') {
@@ -290,53 +300,53 @@ void DFSHelper(Tree node, int K, int cnt, int *CNT) {
 		cnt = 0;
 	}
 
-    for (int i = 0; i < 27; i++) {
-        if (node->children[i]) {
-            DFSHelper(node->children[i], K, cnt, CNT);
-        }
-    }
+	for (int i = 0; i < 27; i++) {
+		if (node->children[i]) {
+			DFSHelper(node->children[i], K, cnt, CNT);
+		}
+	}
 }
 
+// Afișează un șir de caractere
 void printArray(char *path, int length) {
-    for (int i = 0; i < length; i++) {
-        printf("%c", path[i]);
-    }
-    printf("\n");
+	for (int i = 0; i < length; i++) {
+		printf("%c", path[i]);
+	}
+	printf("\n");
 }
 
+// Compară două șiruri de caractere
 int compArray(char *path, int length, char *a) {
 	int ok = 1;
-    for (int i = 0; i < length; i++) {
-        if (path[i] != a[i])
+	for (int i = 0; i < length; i++) {
+		if (path[i] != a[i])
 			ok = 0;
-    }
-    return ok;
+	}
+	return ok;
 }
 
+// Funcție helper pentru afișarea căilor de la rădăcină la frunze
 void printRootToLeafPathsHelper(Tree node, char *a, char *path, int pathLen, int *g) {
-    if (node == NULL)
-        return;
+	if (node == NULL)
+		return;
 
-    // Add current node's value to path
 	if (node->info) {
-    	path[pathLen] = node->info;
-    	pathLen++;
+		path[pathLen] = node->info;
+		pathLen++;
 	}
 
-    // If current node is a leaf, print the path
-    if (node->info == '$') {
+	if (node->info == '$') {
 		path[pathLen - 1] = '\0';
 		pathLen--;
-        if (pathLen == strlen(a)) {
+		if (pathLen == strlen(a)) {
 			if (compArray(path, pathLen, a))
 				(*g) = 1;
 		}
-    } else {
-        // Recursive call for children nodes
-        for (int i = 0; i < 27; i++) {
-            if (node->children[i] != NULL) {
-                printRootToLeafPathsHelper(node->children[i], a, path, pathLen, g);
-            }
-        }
-    }
+	} else {
+		for (int i = 0; i < 27; i++) {
+			if (node->children[i] != NULL) {
+				printRootToLeafPathsHelper(node->children[i], a, path, pathLen, g);
+			}
+		}
+	}
 }
