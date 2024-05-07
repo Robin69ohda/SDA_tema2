@@ -1,3 +1,4 @@
+/*POPA-DRAGHIA ROBIN - 314CB*/
 #include "functii.h"
 #include <string.h>
 
