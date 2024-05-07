@@ -26,7 +26,8 @@ int main(int argc, char *argv[]) {
 		int n = 0;
 		fscanf(fin, "%d", &n);
 		Tree arb = IniT();
-		for (int i = 0; i < n; i++) {
+		int i = 0;
+		for (i = 0; i < n; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			strcat(s, "$");
@@ -49,7 +50,8 @@ int main(int argc, char *argv[]) {
 		int n = 0;
 		fscanf(fin, "%d", &n);
 		Tree arb = IniT();
-		for (int i = 0; i < n; i++) {
+		int i = 0;
+		for (i = 0; i < n; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			strcat(s, "$");
@@ -65,7 +67,8 @@ int main(int argc, char *argv[]) {
 				t *= 10;
 				l--;
 			}
-			for (int i = 0; i < strlen(argv[2]); i++) {
+			int i = 0;
+			for (i = 0; i < strlen(argv[2]); i++) {
 				K += t * (argv[2][i] - '0');
 				t /= 10;
 			}
@@ -89,13 +92,14 @@ int main(int argc, char *argv[]) {
 		int n = 0, m = 0;
 		fscanf(fin, "%d%d", &n, &m);
 		Tree arb = IniT();
-		for (int i = 0; i < n; i++) {
+		int i = 0;
+		for (i = 0; i < n; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			strcat(s, "$");
 			ArbSuf(arb, s);
 		}
-		for (int i = 0; i < m; i++) {
+		for (i = 0; i < m; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			char a[101];
@@ -120,7 +124,8 @@ int main(int argc, char *argv[]) {
 		int n = 0;
 		fscanf(fin, "%d", &n);
 		CompTree arb = InitCT();
-		for (int i = 0; i < n; i++) {
+		int i = 0;
+		for (i = 0; i < n; i++) {
 			char s[101];
 			fscanf(fin, "%s", s);
 			strcat(s, "$");

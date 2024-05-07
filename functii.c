@@ -8,7 +8,8 @@ Tree IniT()
 	Tree arb = (Tree)malloc(sizeof(Node));
 	if (!arb)
 		return NULL;
-	for (int i = 0; i < 27; i++)
+	int i = 0;
+	for (i = 0; i < 27; i++)
 		arb->children[i] = NULL;
 	arb->info = 0;
 	arb->parinte = NULL;
@@ -19,9 +20,11 @@ Tree IniT()
 void ArbSuf(Tree arb, char *s)
 {
 	int l = strlen(s);
-	for (int i = 0; i < l; i++) {
+	int i = 0;
+	for (i = 0; i < l; i++) {
 		Tree aux = arb;
-		for (int j = l - i - 1; j < l; j++) {
+		int j = 0;
+		for (j = l - i - 1; j < l; j++) {
 			int index = s[j] - 'a' + 1;
 			// Dacă întâlnim caracterul '$', creăm un nod nou și îl conectăm la arbore
 			if (s[j] == '$') {
@@ -55,7 +58,8 @@ CompTree InitCT()
 		return NULL;
 	}
 	*arb->info = '\0';
-	for (int i = 0; i < 27; i++)
+	int i = 0;
+	for (i = 0; i < 27; i++)
 		arb->children[i] = NULL;
 	return arb;
 }
@@ -64,9 +68,11 @@ CompTree InitCT()
 void ArbSufComp(CompTree arb, char *s)
 {
 	int l = strlen(s);
-	for (int i = 0; i < l; i++) {
+	int i = 0;
+	for (i = 0; i < l; i++) {
 		CompTree aux = arb;
-		for (int j = l - i - 1; j < l; j++) {
+		int j = 0;
+		for (j = l - i - 1; j < l; j++) {
 			int index = s[j] - 'a' + 1;
 			// Dacă întâlnim caracterul '$', creăm un nod nou și îl conectăm la arbore
 			if (s[j] == '$') {
@@ -105,15 +111,15 @@ void Compactizare(CompTree node) {
 	if (node == NULL)
 		return;
 
-	int cnt = 0, ok = 0;
-	for (int i = 1; i < 27; i++) {
+	int cnt = 0, ok = 0, i = 0;
+	for (i = 1; i < 27; i++) {
 		if (node->children[i])
 			cnt++;
 	}
 
 	if (cnt == 1 && !node->children[0]) {
-		int idx = -1;
-		for (int i = 0; i < 27; i++) {
+		int idx = -1, i = 0;
+		for (i = 0; i < 27; i++) {
 			if (node->children[i]) {
 				idx = i;
 				break;
@@ -126,7 +132,8 @@ void Compactizare(CompTree node) {
 			CompTree aux = node->children[idx];
 			// Concatenăm informația din nodul copil la nodul curent
 			strcat(node->info, aux->info);
-			for (int j = 0; j < 27; j++) {
+			int j = 0;
+			for (j = 0; j < 27; j++) {
 				if (aux->children[j]) {
 					if (j == idx)
 						ok2 = 1;
@@ -150,7 +157,7 @@ void Compactizare(CompTree node) {
 	}
 
 	// Aplicăm compactizarea pentru toți copiii nodului curent
-	for (int i = 0; i < 27; i++) {
+	for (i = 0; i < 27; i++) {
 		if (node->children[i]) {
 			Compactizare(node->children[i]);
 		}
@@ -176,7 +183,8 @@ void BFS(Tree arb) {
 		Tree currentNode = queue[front++]; // Extragem primul nod din coadă
 
 		// Afișăm informația din nodurile copil și incrementăm numărul de noduri în nivelul următor
-		for (int i = 0; i < 27; i++) {
+		int i = 0;
+		for (i = 0; i < 27; i++) {
 			if (currentNode->children[i]) {
 				printf("%c ", currentNode->children[i]->info);
 				queue[rear++] = currentNode->children[i];
@@ -212,7 +220,8 @@ void BFSComp(CompTree arb) {
 		CompTree currentNode = queue[front++]; // Extragem primul nod din coadă
 
 		// Afișăm informația din nodurile copil și incrementăm numărul de noduri în nivelul următor
-		for (int i = 0; i < 27; i++) {
+		int i = 0;
+		for (i = 0; i < 27; i++) {
 			if (currentNode->children[i]) {
 				printf("%s ", currentNode->children[i]->info);
 				queue[rear++] = currentNode->children[i];
@@ -241,8 +250,8 @@ int BFS_maxcopii(Tree arb) {
 	queue[rear++] = arb;
 	while (front < rear) {
 		Tree currentNode = queue[front++];
-		int nrfii = 0;
-		for (int i = 0; i < 27; i++) {
+		int nrfii = 0, i = 0;
+		for (i = 0; i < 27; i++) {
 			if (currentNode->children[i]) {
 				queue[rear++] = currentNode->children[i];
 				nodesInNextLevel++;
@@ -273,7 +282,8 @@ int BFS_nrfrunze(Tree arb) {
 		Tree currentNode = queue[front++];
 		if (currentNode->info == '$')
 			cnt++;
-		for (int i = 0; i < 27; i++) {
+		int i = 0;
+		for (i = 0; i < 27; i++) {
 			if (currentNode->children[i]) {
 				queue[rear++] = currentNode->children[i];
 				nodesInNextLevel++;
@@ -301,25 +311,18 @@ void DFSHelper(Tree node, int K, int cnt, int *CNT) {
 		cnt = 0;
 	}
 
-	for (int i = 0; i < 27; i++) {
+	int i = 0;
+	for (i = 0; i < 27; i++) {
 		if (node->children[i]) {
 			DFSHelper(node->children[i], K, cnt, CNT);
 		}
 	}
 }
 
-// Afișează un șir de caractere
-void printArray(char *path, int length) {
-	for (int i = 0; i < length; i++) {
-		printf("%c", path[i]);
-	}
-	printf("\n");
-}
-
 // Compară două șiruri de caractere
 int compArray(char *path, int length, char *a) {
-	int ok = 1;
-	for (int i = 0; i < length; i++) {
+	int ok = 1, i = 0;
+	for (i = 0; i < length; i++) {
 		if (path[i] != a[i])
 			ok = 0;
 	}
@@ -344,7 +347,8 @@ void printRootToLeafPathsHelper(Tree node, char *a, char *path, int pathLen, int
 				(*g) = 1;
 		}
 	} else {
-		for (int i = 0; i < 27; i++) {
+		int i = 0;
+		for (i = 0; i < 27; i++) {
 			if (node->children[i] != NULL) {
 				printRootToLeafPathsHelper(node->children[i], a, path, pathLen, g);
 			}
